@@ -37,6 +37,26 @@ def get_user_token(authorization_code):
     return user_token
 
 
+def get_matching_activities(user_token):
+
+    client = Client(user_token)
+    matches = list()
+
+    print "Getting friend activities"
+    friend_activities_iterator = client.get_friend_activities()
+
+    while len(matches) < 10:
+        activity = friend_activities_iterator.next()
+        print "Considering activity %s" % activity.id
+        if matches_criteria(activity):
+            matches.append(activity)
+            print "Added %s" % activity.id
+        else:
+            print "Disregarding %s" % activity.id
+
+    return matches
+
+
 @app.route('/')
 def authoriziation_redirect():
     """
@@ -62,8 +82,8 @@ def authorized():
     authorization_code = request.args.get('code')
     if authorization_code:
         user_token = get_user_token(authorization_code)
-        client = Client(user_token)
-        return render_template('index.html', user_token=user_token)
+        matches = get_matching_activities(user_token)
+        return render_template('index.html', matches=matches)
     else:
         #return 400
         pass
