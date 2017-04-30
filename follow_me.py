@@ -76,7 +76,7 @@ def index():
         return redirect(authorization_url)
 
 
-@app.route('/matches/', methods=['POST'])
+@app.route('/matches', methods=['POST'])
 def matches(params):
     """
     Run activity search for authorized user according to selected params
