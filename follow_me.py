@@ -37,7 +37,18 @@ def get_user_token(authorization_code):
     return user_token
 
 
-def get_matching_activities(user_token):
+def get_match_params(request):
+    return {
+        "home_loc_lat": request.form['home_loc_lat'],
+        "home_loc_lon": request.form['home_loc_lon'],
+        "max_dist_from_home": request.form['max_dist_from_home'],
+        "min_ride_length": request.form['min_ride_length'],
+        "max_ride_length": request.form['max_ride_length'],
+        "max_results": request.form['max_results'],
+    }
+
+
+def get_matching_activities(user_token, params):
 
     client = Client(user_token)
     matches = list()
@@ -77,13 +88,14 @@ def index():
 
 
 @app.route('/matches', methods=['POST'])
-def matches(params):
+def matches():
     """
     Run activity search for authorized user according to selected params
     """
-    authorization_code = request.args.get('code')
+    authorization_code = request.form.get('auth_code')
     if authorization_code:
         user_token = get_user_token(authorization_code)
+        params = get_match_params(request)
         matches = get_matching_activities(user_token, params)
         return render_template('matches.html', matches=matches)
     else:

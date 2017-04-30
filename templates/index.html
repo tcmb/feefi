@@ -1,5 +1,5 @@
 <html>
-  <h1>Select paramters</h1>
+  <h1>Select parameters</h1>
   <form action="/matches" method="post">
     <div>
       <label for="home_loc_lat">Home location latitude</label>
@@ -10,20 +10,26 @@
       <input name="home_loc_lon" id="home_loc_lon" value="13.45"></input>
     </div>
     <div>
-      <label for="max_from_home">Max km from home for start/stop</label>
-      <input name="max_from_home" id="max_from_home" value="10"></input>
+      <label for="max_dist_from_home">Max km from home for start/stop</label>
+      <input name="max_dist_from_home" id="max_dist_from_home" value="10"></input>
     </div>
     <div>
-      <label for="min_length">Minimum ride length</label>
-      <input name="min_length" id="min_length" value="100"></input>
+      <label for="min_ride_length">Minimum ride length</label>
+      <input name="min_ride_length" id="min_ride_length" value="100"></input>
     </div>
     <div>
-      <label for="max_length">Minimum ride length</label>
-      <input name="max_length" id="max_length" value="0"></input>
+      <label for="max_ride_length">Minimum ride length</label>
+      <input name="max_ride_length" id="max_ride_length" value="0"></input>
     </div>
     <div>
       <label for="max_results">Maximum number of results</label>
       <input name="max_results" id="max_results" value="10"></input>
+    </div>
+    <div>
+      <input type="hidden" id="auth_code" name="auth_code" value="{{auth_code}}"></input>
+    </div>
+    <div>
+      <button>Get matches</button>
     </div>
   </form>
 </html>
