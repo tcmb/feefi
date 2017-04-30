@@ -16,7 +16,7 @@ my_host = LOCALHOST
 
 my_app_params = {
     'client_id': CLIENT_ID,
-    'redirect_uri': urljoin(my_host, '/authorized/'),
+    'redirect_uri': urljoin(my_host, '/'),
     'response_type': 'code',
     'approval_prompt': 'auto',
     'scope': 'public'
@@ -64,32 +64,28 @@ def get_matching_activities(user_token):
 
 
 @app.route('/')
-def authoriziation_redirect():
+def index():
     """
-    Redirect the user to the Strava authorization page.
-    Assumptions:
-    - User has not authorized this app yet
-    - User has a Strava account
-    (- User will authorize this app and return)
+    For authorized users, display page for parameter selection
+    For non-authorized users, redirect to Strava app authorization page
     """
-    return redirect(authorization_url)
+    authorization_code = request.args.get('code')
+    if authorization_code:
+        return render_template('index.html', auth_code=authorization_code)
+    else:
+        return redirect(authorization_url)
 
 
-@app.route('/authorized/')
-def authorized():
+@app.route('/matches/', methods=['POST'])
+def matches(params):
     """
-    Run activity search for authorized user.
-    Assumptions:
-    - User has authorized this app
-    - User agent is being sent from Strava oauth redirect back to us
-    - Token exchange will succeed
-    (- Getting activities will work)
+    Run activity search for authorized user according to selected params
     """
     authorization_code = request.args.get('code')
     if authorization_code:
         user_token = get_user_token(authorization_code)
-        matches = get_matching_activities(user_token)
-        return render_template('index.html', matches=matches)
+        matches = get_matching_activities(user_token, params)
+        return render_template('matches.html', matches=matches)
     else:
         #return 400
         pass

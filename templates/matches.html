@@ -1,0 +1,8 @@
+<html>
+  <h1>Your matchbox</h1>
+  <ul>
+    {% for match in matches %}
+        <li>Name: {{match.name}}, Length: {{match.distance}}<br/>URL: <a href=https://www.strava.com/activities/{{match.id}}>https://www.strava.com/activities/{{match.id}}</a></li>
+    {% endfor %}
+  </ul>
+</html>
