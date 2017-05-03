@@ -7,7 +7,7 @@ import requests
 import json
 
 from stravalib.client import Client
-from helpers import matches_criteria, get_min_dist, km
+from helpers import matches_criteria, get_min_dist, get_activity_url, km, Match
 
 
 app = Flask(__name__)
@@ -74,6 +74,14 @@ def get_matching_activities(user_token, params):
     return matches
 
 
+def extract_match_data(matches):
+    return [
+        Match(
+            id=m.id, name=m.name, url=get_activity_url(m), length=km(m.distance), dist_from_home=km(get_min_dist(m))
+        ) for m in matches
+    ]
+
+
 @app.route('/')
 def index():
     """
@@ -96,7 +104,9 @@ def matches():
     if authorization_code:
         user_token = get_user_token(authorization_code)
         params = get_match_params(request)
-        matches = get_matching_activities(user_token, params)
+        matches = extract_match_data(
+            get_matching_activities(user_token, params)
+            )
         return render_template('matches.html', matches=matches)
     else:
         #return 400

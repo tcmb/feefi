@@ -1,10 +1,13 @@
 #!/usr/bin/env python
 
 from math import cos, asin, sqrt
+from collections import namedtuple
 from units import unit
 from constants import P, HOME_LOC
 
 km = unit('km')
+
+Match = namedtuple('Match', ['id', 'name', 'length', 'url', 'dist_from_home'])
 
 def distance(lat1, lon1, lat2, lon2):
     a = 0.5 - cos((lat2 - lat1) * P)/2 + cos(lat1 * P) * cos(lat2 * P) * (1 - cos((lon2 - lon1) * P)) / 2
@@ -24,3 +27,6 @@ def matches_criteria(activity):
 
 def get_min_dist(activity):
     return min(start_distance_from_home(activity), end_distance_from_home(activity))
+
+def get_activity_url(activity):
+    return u"https://www.strava.com/activities/%s" % activity.id
