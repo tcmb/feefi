@@ -48,7 +48,37 @@ def get_match_params(request):
     }
 
 
+def validate_filter_parameters(params):
+    # This one might be worth unit testing...
+    # 1. ensure correct types
+    try:
+        params["home_loc_lat"] = float(params['home_loc_lat'])
+        params["home_loc_lon"] = float(params['home_loc_lon'])
+        params["max_dist_from_home"] = int(params['max_dist_from_home'])
+        params["min_ride_length"] = int(params['min_ride_length'])
+        params["max_ride_length"] = int(params['max_ride_length'])
+        params['max_results'] = int(params['max_results'])
+    except ValueError, e:
+        # simple error handling for now: use default params
+        return DEFAULT_FILTER_PARAMS
+
+    # 2. ensure params within sensible boundaries
+    params["home_loc_lat"] = params['home_loc_lat'] if 0 <= params['home_loc_lat'] <= 90 else DEFAULT_FILTER_PARAMS['home_loc_lat']
+    params["home_loc_lon"] = params['home_loc_lon'] if 0 <= params["home_loc_lon"] <= 180 else DEFAULT_FILTER_PARAMS['home_loc_lon']
+    params["max_dist_from_home"] = params['max_dist_from_home'] if 0 <= params["max_dist_from_home"] <= 100 else DEFAULT_FILTER_PARAMS['max_dist_from_home']
+    # min ride length can be chosen at will, as long as it's less than max ride length. worst case is that max_results will be returned, and the Strava Feed API also has a cap of 200 results.
+    params["min_ride_length"] = params['min_ride_length'] if params["min_ride_length"] <= params["max_ride_length"] else DEFAULT_FILTER_PARAMS['min_ride_length']
+    # max ride length can be 0 for unlimited length, otherwise it needs to be larger than min ride length
+    params["max_ride_length"] = params['max_ride_length'] if params["max_ride_length"] == 0 or params["max_ride_length"] >= params["min_ride_length"] else DEFAULT_FILTER_PARAMS['max_ride_length']
+    # cap at Strava max results limit for the Feed API
+    params['max_results'] = params['max_results'] if 1 <= params["max_results"] <= 200 else 200
+
+    return params
+
+
 def get_matching_activities(user_token, params):
+
+    params = validate_filter_parameters(params)
 
     client = Client(user_token)
     matches = list()
