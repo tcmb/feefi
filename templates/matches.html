@@ -1,7 +1,7 @@
 <html lang="en-GB">
   <h1>Your matchbox</h1>
   {% if matches|length is equalto 0 %}
-    Sorry, no matches with these criteria. <a href=http://example.com>Back</a> to filters.
+    Sorry, no matches with these criteria. <a href={{base_url}}>Back</a> to filters.
   {% else %}
     <ul>
       {% for match in matches %}

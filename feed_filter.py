@@ -11,12 +11,12 @@ from helpers import matches_criteria, get_min_dist, get_activity_url, km, Match
 
 
 app = Flask(__name__)
-my_host = LOCALHOST
-#my_host = REMOTEHOST
+base_url = LOCALHOST
+#base_url = REMOTEHOST
 
 my_app_params = {
     'client_id': CLIENT_ID,
-    'redirect_uri': urljoin(my_host, '/'),
+    'redirect_uri': urljoin(base_url, '/'),
     'response_type': 'code',
     'approval_prompt': 'auto',
     'scope': 'public'
@@ -138,7 +138,7 @@ def matches():
         matches = extract_match_data(
             get_matching_activities(user_token, params)
             )
-        return render_template('matches.html', matches=matches)
+        return render_template('matches.html', matches=matches, base_url=base_url)
     else:
         #return 400
         pass
