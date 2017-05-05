@@ -1,12 +1,16 @@
 <html lang="en-GB">
   <h1>Your matchbox</h1>
-  <ul>
-    {% for match in matches %}
-        <li>
-          Name: {{match.name}}, Length: {{match.length}}<br/>
-          URL: <a href={{match.url}}>{{match.url}}</a><br/>
-          Dist from home: {{match.dist_from_home}}
-        </li>
-    {% endfor %}
-  </ul>
+  {% if matches|length is equalto 0 %}
+    Sorry, no matches with these criteria. <a href=http://example.com>Back</a> to filters.
+  {% else %}
+    <ul>
+      {% for match in matches %}
+          <li>
+            Name: {{match.name}}, Length: {{match.length}}<br/>
+            URL: <a href={{match.url}}>{{match.url}}</a><br/>
+            Dist from home: {{match.dist_from_home}}
+          </li>
+      {% endfor %}
+    </ul>
+  {% endif %}
 </html>
