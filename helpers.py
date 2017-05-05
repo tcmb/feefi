@@ -14,16 +14,29 @@ def distance(lat1, lon1, lat2, lon2):
     return 12742 * asin(sqrt(a))
 
 def start_distance_from_home(activity):
+    assert activity.start_latlng is not None
     return distance(HOME_LOC.lat, HOME_LOC.lon, activity.start_latlng.lat, activity.start_latlng.lon)
 
 def end_distance_from_home(activity):
+    assert activity.end_latlng is not None
     return distance(HOME_LOC.lat, HOME_LOC.lon, activity.end_latlng.lat, activity.end_latlng.lon)
 
-def is_close_to_home(activity):
-    return km(start_distance_from_home(activity)) <= km(10) or km(end_distance_from_home(activity)) <= km(10)
+def is_close_to_home(activity, dist_from_home):
+    # some activities like trainer rides don't have GPS information. Those are not considered 'close to home'.
+    if activity.start_latlng is not None and activity.end_latlng is not None:
+        return km(start_distance_from_home(activity)) <= km(dist_from_home) or km(end_distance_from_home(activity)) <= km(dist_from_home)
+    else:
+        return False
 
-def matches_criteria(activity):
-    return activity.type == "Ride" and km(activity.distance) > km(100) and is_close_to_home(activity)
+def matches_criteria(activity, params):
+    activity_does_match = activity.type == "Ride" and \
+        km(activity.distance) > km(params['min_ride_length']) and \
+        is_close_to_home(activity, params['max_dist_from_home'])
+    # consider max_ride_length only if != 0
+    if activity_does_match and params['max_ride_length'] != 0:
+        return activity_does_match and km(activity.distance) < km(params['max_ride_length'])
+    else:
+        return activity_does_match
 
 def get_min_dist(activity):
     return min(start_distance_from_home(activity), end_distance_from_home(activity))

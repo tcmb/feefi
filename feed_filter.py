@@ -89,12 +89,12 @@ def get_matching_activities(user_token, params):
     # limited to last 200 total activities as per http://strava.github.io/api/v3/activities/#get-feed
     friend_activities_iterator = client.get_friend_activities()
 
-    while len(matches) < 10:
+    while len(matches) < params['max_results']:
         i = i + 1
         try:
             activity = friend_activities_iterator.next()
             # print "Considering activity %s" % activity.id
-            if matches_criteria(activity):
+            if matches_criteria(activity, params):
                 matches.append(activity)
                 print "Added %s (%i)" % (activity.id, i)
             else:
