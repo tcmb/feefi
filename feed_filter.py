@@ -66,8 +66,9 @@ def validate_filter_parameters(params):
     params["home_loc_lat"] = params['home_loc_lat'] if 0 <= params['home_loc_lat'] <= 90 else DEFAULT_FILTER_PARAMS['home_loc_lat']
     params["home_loc_lon"] = params['home_loc_lon'] if 0 <= params["home_loc_lon"] <= 180 else DEFAULT_FILTER_PARAMS['home_loc_lon']
     params["max_dist_from_home"] = params['max_dist_from_home'] if 0 <= params["max_dist_from_home"] <= 100 else DEFAULT_FILTER_PARAMS['max_dist_from_home']
-    # min ride length can be chosen at will, as long as it's less than max ride length. worst case is that max_results will be returned, and the Strava Feed API also has a cap of 200 results.
-    params["min_ride_length"] = params['min_ride_length'] if params["min_ride_length"] <= params["max_ride_length"] else DEFAULT_FILTER_PARAMS['min_ride_length']
+    # min ride length can be chosen at will, as long as it's less than max ride length (unless max_ride_length is 0)
+    # worst case is that max_results will be returned, and the Strava Feed API also has a cap of 200 results.
+    params["min_ride_length"] = params['min_ride_length'] if params["min_ride_length"] <= params["max_ride_length"] or params['max_ride_length'] == 0 else DEFAULT_FILTER_PARAMS['min_ride_length']
     # max ride length can be 0 for unlimited length, otherwise it needs to be larger than min ride length
     params["max_ride_length"] = params['max_ride_length'] if params["max_ride_length"] == 0 or params["max_ride_length"] >= params["min_ride_length"] else DEFAULT_FILTER_PARAMS['max_ride_length']
     # cap at Strava max results limit for the Feed API
