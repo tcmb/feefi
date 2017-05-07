@@ -10,7 +10,8 @@ from stravalib.client import Client
 from helpers import matches_criteria, get_min_dist, get_activity_url, km, Match
 
 
-app = Flask(__name__)
+application = Flask(__name__)
+app = application
 base_url = LOCALHOST
 #base_url = REMOTEHOST
 
