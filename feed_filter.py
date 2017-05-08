@@ -10,21 +10,19 @@ from constants import *
 from helpers import matches_criteria, get_min_dist, get_activity_url, km, Match
 # use local, non-version-controlled secrets file, fall back to env var usage
 try:
-    from secrets import CLIENT_ID, CLIENT_SECRET, REMOTEHOST
+    from secrets import CLIENT_ID, CLIENT_SECRET, BASE_URL
 except ImportError:
     CLIENT_ID = os.getenv('CLIENT_ID')
     CLIENT_SECRET = os.getenv('CLIENT_SECRET')
-    REMOTEHOST = os.getenv('REMOTEHOST')
+    BASE_URL = os.getenv('BASE_URL')
 
 
 application = Flask(__name__)
 app = application
-base_url = LOCALHOST
-#base_url = REMOTEHOST
 
 my_app_params = {
     'client_id': CLIENT_ID,
-    'redirect_uri': urljoin(base_url, '/'),
+    'redirect_uri': urljoin(BASE_URL, '/'),
     'response_type': 'code',
     'approval_prompt': 'auto',
     'scope': 'public'
@@ -146,7 +144,7 @@ def matches():
         matches = extract_match_data(
             get_matching_activities(user_token, params)
             )
-        return render_template('matches.html', matches=matches, base_url=base_url)
+        return render_template('matches.html', matches=matches, base_url=BASE_URL)
     else:
         #return 400
         pass
