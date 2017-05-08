@@ -1,13 +1,20 @@
-from flask import Flask, redirect, request, render_template
-from constants import *
-from secrets import *
+import os
+import json
+import requests
+from functools import partial
 from urllib import urlencode
 from urlparse import urljoin
-import requests
-import json
-
+from flask import Flask, redirect, request, render_template
 from stravalib.client import Client
+from constants import *
 from helpers import matches_criteria, get_min_dist, get_activity_url, km, Match
+# use local, non-version-controlled secrets file, fall back to env var usage
+try:
+    from secrets import CLIENT_ID, CLIENT_SECRET, REMOTEHOST
+except ImportError:
+    CLIENT_ID = os.getenv('CLIENT_ID')
+    CLIENT_SECRET = os.getenv('CLIENT_SECRET')
+    REMOTEHOST = os.getenv('REMOTEHOST')
 
 
 application = Flask(__name__)
