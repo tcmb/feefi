@@ -9,6 +9,9 @@ __pycache__/
 # Secrets
 secrets.py
 
+# PyCharm project file
+.idea/
+
 # Distribution / packaging
 .Python
 env/
