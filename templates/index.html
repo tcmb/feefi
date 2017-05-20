@@ -1,36 +1,60 @@
 {% extends "base.html" %}
+{% block head %}
+    {{ super() }}
+    <script src='https://api.mapbox.com/mapbox.js/v3.0.1/mapbox.js'></script>
+    <link href='https://api.mapbox.com/mapbox.js/v3.0.1/mapbox.css' rel='stylesheet' />
+    <style>
+        body { margin:0; padding:0; }
+        #outer { position:absolute; top:0; left:0; width:100%; height:100%;}
+        #param_form { position:absolute; top:0; left:0; width:50%; }
+        #map-container { position:absolute; top:0; right:0; width:50% }
+        #map-one { position:absolute; top:0; right:0; width:40%; height:100%; padding-left:10%; }
+    </style>
+{% endblock %}
 {% block body %}
-<h1>Select parameters</h1>
-<form action="/matches" method="post">
-    <div>
-        <label for="home_loc_lat">Home location latitude</label>
-        <input name="home_loc_lat" id="home_loc_lat" value="52.47"></input>
+<div id="outer">
+    <div id="param_form">
+        <h1>Select parameters</h1>
+        <form action="/matches" method="post">
+            <div>
+                <label for="home_loc_lat">Home location latitude</label>
+                <input name="home_loc_lat" id="home_loc_lat" value="52.47"></input>
+            </div>
+            <div>
+                <label for="home_loc_lon">Home location longitude</label>
+                <input name="home_loc_lon" id="home_loc_lon" value="13.45"></input>
+            </div>
+            <div>
+                <label for="max_dist_from_home">Max km from home for start/stop</label>
+                <input name="max_dist_from_home" id="max_dist_from_home" value="10"></input>
+            </div>
+            <div>
+                <label for="min_ride_length">Minimum ride length</label>
+                <input name="min_ride_length" id="min_ride_length" value="100"></input>
+            </div>
+            <div>
+                <label for="max_ride_length">Maximum ride length (0 for unlimited)</label>
+                <input name="max_ride_length" id="max_ride_length" value="0"></input>
+            </div>
+            <div>
+                <label for="max_results">Maximum number of results</label>
+                <input name="max_results" id="max_results" value="10"></input>
+            </div>
+            <div>
+                <input type="hidden" id="auth_code" name="auth_code" value="{{auth_code}}"></input>
+            </div>
+            <div>
+                <button>Get matches</button>
+            </div>
+        </form>
     </div>
-    <div>
-        <label for="home_loc_lon">Home location longitude</label>
-        <input name="home_loc_lon" id="home_loc_lon" value="13.45"></input>
-    </div>
-    <div>
-        <label for="max_dist_from_home">Max km from home for start/stop</label>
-        <input name="max_dist_from_home" id="max_dist_from_home" value="10"></input>
-    </div>
-    <div>
-        <label for="min_ride_length">Minimum ride length</label>
-        <input name="min_ride_length" id="min_ride_length" value="100"></input>
-    </div>
-    <div>
-        <label for="max_ride_length">Maximum ride length (0 for unlimited)</label>
-        <input name="max_ride_length" id="max_ride_length" value="0"></input>
-    </div>
-    <div>
-        <label for="max_results">Maximum number of results</label>
-        <input name="max_results" id="max_results" value="10"></input>
-    </div>
-    <div>
-        <input type="hidden" id="auth_code" name="auth_code" value="{{auth_code}}"></input>
-    </div>
-    <div>
-        <button>Get matches</button>
-    </div>
-</form>
+    <!--<div id="map-container">-->
+        <!--<h1>Select 'home' position</h1>-->
+        <div id='map-one' class='map'> </div>
+        <script>
+            L.mapbox.accessToken = 'pk.eyJ1IjoidGNtYiIsImEiOiJjajJ4am9hczAwMDdpMndubzhyMDNkOXpzIn0.9HuZArmMyqiP-QzCY2diGA';
+            L.mapbox.map('map-one', 'mapbox.streets').setView([52.47, 13.45], 14);
+        </script>
+    <!--</div>-->
+</div>
 {% endblock %}
