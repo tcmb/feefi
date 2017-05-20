@@ -1,7 +1,6 @@
 import os
 import json
 import requests
-from functools import partial
 from urllib import urlencode
 from urlparse import urljoin
 from flask import Flask, redirect, request, render_template
