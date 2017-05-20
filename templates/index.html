@@ -1,14 +1,14 @@
 {% extends "base.html" %}
 {% block head %}
     {{ super() }}
-    <script src='https://api.mapbox.com/mapbox.js/v3.0.1/mapbox.js'></script>
-    <link href='https://api.mapbox.com/mapbox.js/v3.0.1/mapbox.css' rel='stylesheet' />
+    <script src='https://api.mapbox.com/mapbox-gl-js/v0.37.0/mapbox-gl.js'></script>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v0.37.0/mapbox-gl.css' rel='stylesheet' />
     <style>
         body { margin:0; padding:0; }
         #outer { position:absolute; top:0; left:0; width:100%; height:100%;}
         #param_form { position:absolute; top:0; left:0; width:50%; }
         #map-container { position:absolute; top:0; right:0; width:50% }
-        #map-one { position:absolute; top:0; right:0; width:40%; height:100%; padding-left:10%; }
+        #map-one { position:absolute; top:0; right:0; width:50%; height:100%; padding-left:10%; }
     </style>
 {% endblock %}
 {% block body %}
@@ -52,8 +52,16 @@
         <!--<h1>Select 'home' position</h1>-->
         <div id='map-one' class='map'> </div>
         <script>
-            L.mapbox.accessToken = 'pk.eyJ1IjoidGNtYiIsImEiOiJjajJ4am9hczAwMDdpMndubzhyMDNkOXpzIn0.9HuZArmMyqiP-QzCY2diGA';
-            L.mapbox.map('map-one', 'mapbox.streets').setView([52.47, 13.45], 14);
+            mapboxgl.accessToken = 'pk.eyJ1IjoidGNtYiIsImEiOiJjajJ4am9hczAwMDdpMndubzhyMDNkOXpzIn0.9HuZArmMyqiP-QzCY2diGA';
+            var map = new mapboxgl.Map({
+                container: 'map-one', // container id
+                style: 'mapbox://styles/mapbox/streets-v9',
+                center: [13.45, 52.47], // starting position
+                zoom: 11 // starting zoom
+            });
+            map.on('mousemove', function (e) {
+                console.log(JSON.stringify(e.lngLat));
+            });
         </script>
     <!--</div>-->
 </div>
