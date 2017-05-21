@@ -59,8 +59,9 @@
                 center: [13.45, 52.47], // starting position
                 zoom: 11 // starting zoom
             });
-            map.on('mousemove', function (e) {
-                console.log(JSON.stringify(e.lngLat));
+            map.on('click', function (e) {
+                document.getElementById("home_loc_lat").value = e.lngLat.lat.toFixed(2);
+                document.getElementById("home_loc_lon").value = e.lngLat.lng.toFixed(2);
             });
         </script>
     <!--</div>-->
