@@ -1,0 +1,9 @@
+body { margin:0; padding:0; }
+
+#outer { position:absolute; top:0; left:0; width:100%; height:100%;}
+
+#param_form { position:absolute; top:0; left:0; width:50%; }
+
+#map-container { position:absolute; top:0; right:0; width:50% }
+
+#map-one { position:absolute; top:0; right:0; width:50%; height:100%; padding-left:10%; }

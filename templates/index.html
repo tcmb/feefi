@@ -3,15 +3,12 @@
     {{ super() }}
     <script src='https://api.mapbox.com/mapbox-gl-js/v0.37.0/mapbox-gl.js'></script>
     <link href='https://api.mapbox.com/mapbox-gl-js/v0.37.0/mapbox-gl.css' rel='stylesheet' />
-    <style>
-        body { margin:0; padding:0; }
-        #outer { position:absolute; top:0; left:0; width:100%; height:100%;}
-        #param_form { position:absolute; top:0; left:0; width:50%; }
-        #map-container { position:absolute; top:0; right:0; width:50% }
-        #map-one { position:absolute; top:0; right:0; width:50%; height:100%; padding-left:10%; }
-    </style>
 {% endblock %}
 {% block body %}
+<div id="intro">
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam iaculis purus sapien, nec sagittis ex rhoncus at. Praesent cursus massa quis porttitor lobortis. Sed convallis nunc ac velit auctor iaculis. Curabitur lorem metus, efficitur at accumsan eu, eleifend quis lacus. Nullam elementum dui in eros posuere tempor. Mauris elementum neque erat. Mauris non elit ac metus malesuada pharetra ac quis augue. Maecenas fermentum lectus cursus orci ultrices, interdum aliquet nunc vulputate. Curabitur lacus risus, aliquam at pretium a, sodales non ex. Quisque eu mi a ex feugiat facilisis in eget quam. Integer porttitor enim at eros semper, et pulvinar augue fermentum.<br/>
+Aliquam ligula odio, malesuada eu aliquam id, mollis sed mauris. Duis nulla quam, interdum cursus augue ut, consequat porta sapien. Mauris sagittis, purus eget finibus vulputate, lacus magna condimentum sem, iaculis interdum ante neque ac orci. Sed ac dictum ligula, non egestas leo. Duis turpis ipsum, vestibulum nec varius a, lacinia ut nibh. Nullam et nisl massa. Donec eget dapibus felis. Proin sit amet molestie lectus. Nunc imperdiet, nisl eu hendrerit fringilla, lorem quam porttitor ex, vel tempus augue tellus eu orci. In gravida ultrices eros at suscipit. Donec tempus, est sed scelerisque bibendum, turpis leo commodo ante, imperdiet laoreet erat sem et felis. Vestibulum tincidunt orci ac neque interdum fringilla. Praesent posuere diam id pellentesque aliquam. Aenean consequat non lorem non tincidunt.
+</div>
 <div id="outer">
     <div id="param_form">
         <h1>Select parameters</h1>
@@ -51,19 +48,10 @@
     <!--<div id="map-container">-->
         <!--<h1>Select 'home' position</h1>-->
         <div id='map-one' class='map'> </div>
-        <script>
-            mapboxgl.accessToken = 'pk.eyJ1IjoidGNtYiIsImEiOiJjajJ4am9hczAwMDdpMndubzhyMDNkOXpzIn0.9HuZArmMyqiP-QzCY2diGA';
-            var map = new mapboxgl.Map({
-                container: 'map-one', // container id
-                style: 'mapbox://styles/mapbox/streets-v9',
-                center: [13.45, 52.47], // starting position
-                zoom: 11 // starting zoom
-            });
-            map.on('click', function (e) {
-                document.getElementById("home_loc_lat").value = e.lngLat.lat.toFixed(2);
-                document.getElementById("home_loc_lon").value = e.lngLat.lng.toFixed(2);
-            });
+        <script type="text/javascript">
+            document.offlineMode = true;
         </script>
+        <script src="static/js/feefi.js"></script>
     <!--</div>-->
 </div>
 {% endblock %}
