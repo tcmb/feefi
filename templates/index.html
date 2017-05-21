@@ -5,13 +5,16 @@
     <link href='https://api.mapbox.com/mapbox-gl-js/v0.37.0/mapbox-gl.css' rel='stylesheet' />
 {% endblock %}
 {% block body %}
+<div id="title">
+    <h1>FeeFi the Feed Filter for Strava</h1>
+</div>
 <div id="intro">
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam iaculis purus sapien, nec sagittis ex rhoncus at. Praesent cursus massa quis porttitor lobortis. Sed convallis nunc ac velit auctor iaculis. Curabitur lorem metus, efficitur at accumsan eu, eleifend quis lacus. Nullam elementum dui in eros posuere tempor. Mauris elementum neque erat. Mauris non elit ac metus malesuada pharetra ac quis augue. Maecenas fermentum lectus cursus orci ultrices, interdum aliquet nunc vulputate. Curabitur lacus risus, aliquam at pretium a, sodales non ex. Quisque eu mi a ex feugiat facilisis in eget quam. Integer porttitor enim at eros semper, et pulvinar augue fermentum.<br/>
 Aliquam ligula odio, malesuada eu aliquam id, mollis sed mauris. Duis nulla quam, interdum cursus augue ut, consequat porta sapien. Mauris sagittis, purus eget finibus vulputate, lacus magna condimentum sem, iaculis interdum ante neque ac orci. Sed ac dictum ligula, non egestas leo. Duis turpis ipsum, vestibulum nec varius a, lacinia ut nibh. Nullam et nisl massa. Donec eget dapibus felis. Proin sit amet molestie lectus. Nunc imperdiet, nisl eu hendrerit fringilla, lorem quam porttitor ex, vel tempus augue tellus eu orci. In gravida ultrices eros at suscipit. Donec tempus, est sed scelerisque bibendum, turpis leo commodo ante, imperdiet laoreet erat sem et felis. Vestibulum tincidunt orci ac neque interdum fringilla. Praesent posuere diam id pellentesque aliquam. Aenean consequat non lorem non tincidunt.
 </div>
 <div id="outer">
     <div id="param_form">
-        <h1>Select parameters</h1>
+        <h2>Select parameters</h2>
         <form action="/matches" method="post">
             <div>
                 <label for="home_loc_lat">Home location latitude</label>
@@ -46,7 +49,7 @@ Aliquam ligula odio, malesuada eu aliquam id, mollis sed mauris. Duis nulla quam
         </form>
     </div>
     <!--<div id="map-container">-->
-        <!--<h1>Select 'home' position</h1>-->
+        <!--<h2>Select 'home' position</h2>-->
         <div id='map-one' class='map'> </div>
         <script type="text/javascript">
             document.offlineMode = true;
