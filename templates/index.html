@@ -8,14 +8,18 @@
 <div id="title">
     <h1>FeeFi the Feed Filter for Strava</h1>
 </div>
-<div id="intro">
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam iaculis purus sapien, nec sagittis ex rhoncus at. Praesent cursus massa quis porttitor lobortis. Sed convallis nunc ac velit auctor iaculis. Curabitur lorem metus, efficitur at accumsan eu, eleifend quis lacus. Nullam elementum dui in eros posuere tempor. Mauris elementum neque erat. Mauris non elit ac metus malesuada pharetra ac quis augue. Maecenas fermentum lectus cursus orci ultrices, interdum aliquet nunc vulputate. Curabitur lacus risus, aliquam at pretium a, sodales non ex. Quisque eu mi a ex feugiat facilisis in eget quam. Integer porttitor enim at eros semper, et pulvinar augue fermentum.<br/>
-Aliquam ligula odio, malesuada eu aliquam id, mollis sed mauris. Duis nulla quam, interdum cursus augue ut, consequat porta sapien. Mauris sagittis, purus eget finibus vulputate, lacus magna condimentum sem, iaculis interdum ante neque ac orci. Sed ac dictum ligula, non egestas leo. Duis turpis ipsum, vestibulum nec varius a, lacinia ut nibh. Nullam et nisl massa. Donec eget dapibus felis. Proin sit amet molestie lectus. Nunc imperdiet, nisl eu hendrerit fringilla, lorem quam porttitor ex, vel tempus augue tellus eu orci. In gravida ultrices eros at suscipit. Donec tempus, est sed scelerisque bibendum, turpis leo commodo ante, imperdiet laoreet erat sem et felis. Vestibulum tincidunt orci ac neque interdum fringilla. Praesent posuere diam id pellentesque aliquam. Aenean consequat non lorem non tincidunt.
-</div>
 <div id="outer">
     <div id="param_form">
         <h2>Select parameters</h2>
         <form action="/matches" method="post">
+            <div>
+                <label for="min_ride_length">Minimum ride length</label>
+                <input name="min_ride_length" id="min_ride_length" value="100"></input>
+            </div>
+            <div>
+                <label for="max_ride_length">Maximum ride length (0 for unlimited)</label>
+                <input name="max_ride_length" id="max_ride_length" value="0"></input>
+            </div>
             <div>
                 <label for="home_loc_lat">Home location latitude</label>
                 <input name="home_loc_lat" id="home_loc_lat" value="52.47"></input>
@@ -27,14 +31,6 @@ Aliquam ligula odio, malesuada eu aliquam id, mollis sed mauris. Duis nulla quam
             <div>
                 <label for="max_dist_from_home">Max km from home for start/stop</label>
                 <input name="max_dist_from_home" id="max_dist_from_home" value="10"></input>
-            </div>
-            <div>
-                <label for="min_ride_length">Minimum ride length</label>
-                <input name="min_ride_length" id="min_ride_length" value="100"></input>
-            </div>
-            <div>
-                <label for="max_ride_length">Maximum ride length (0 for unlimited)</label>
-                <input name="max_ride_length" id="max_ride_length" value="0"></input>
             </div>
             <div>
                 <label for="max_results">Maximum number of results</label>
@@ -56,5 +52,20 @@ Aliquam ligula odio, malesuada eu aliquam id, mollis sed mauris. Duis nulla quam
         </script>
         <script src="static/js/feefi.js"></script>
     <!--</div>-->
+</div>
+<div id="intro">
+    <h3>What is this?</h3>
+    This filters your Strava Feed (the activities of people you're following) by certain criteria in order to help you find a route to ride.<br/>
+    People your're following are often riding nice routes, but these rides are drowning in lots of commutes and other activities in your feed. This tool helps you to find the interesting rides that you might want to ride yourself.
+    <h3>Limitations</h3>
+    It only filters the most recent 200 activities in your feed.<br/>
+    This is a hard limitation put in place by Strava. Depending on how many people you follow and how relevant their activities are to you, this might limit the number of good results you're getting.
+    <h3>Ideas for improvements</h3>
+    I have some ideas for how to improve this tool. I'm also happy to receive your feedback and ideas at <strong>flo (at) t21n (dot) net</strong>
+    <ul>
+        <li>Exclude rides with a certain phrase in them (if you don't want to see this weekly 'drop ride' from your group).</li>
+        <li>Show rides that you gave Kudos to</li>
+        <li>Get around the 200 activity limit</li>
+    </ul>
 </div>
 {% endblock %}
