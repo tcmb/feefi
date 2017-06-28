@@ -5,10 +5,10 @@
     <link href='https://api.mapbox.com/mapbox-gl-js/v0.37.0/mapbox-gl.css' rel='stylesheet' />
 {% endblock %}
 {% block body %}
-<div id="title">
-    <h1>FeeFi the Feed Filter for Strava</h1>
-</div>
 <div id="outer">
+    <div id="title">
+        <h1>FeeFi the Feed Filter for Strava</h1>
+    </div>
     <div id="param_form">
         <h2>Select parameters</h2>
         <form action="/matches" method="post">
@@ -44,28 +44,26 @@
             </div>
         </form>
     </div>
-    <!--<div id="map-container">-->
-        <!--<h2>Select 'home' position</h2>-->
-        <div id='map-one' class='map'> </div>
-        <script type="text/javascript">
-            document.offlineMode = true;
-        </script>
-        <script src="static/js/feefi.js"></script>
-    <!--</div>-->
-</div>
-<div id="intro">
-    <h3>What is this?</h3>
-    This filters your Strava Feed (the activities of people you're following) by certain criteria in order to help you find a route to ride.<br/>
-    People your're following are often riding nice routes, but these rides are drowning in lots of commutes and other activities in your feed. This tool helps you to find the interesting rides that you might want to ride yourself.
-    <h3>Limitations</h3>
-    It only filters the most recent 200 activities in your feed.<br/>
-    This is a hard limitation put in place by Strava. Depending on how many people you follow and how relevant their activities are to you, this might limit the number of good results you're getting.
-    <h3>Ideas for improvements</h3>
-    I have some ideas for how to improve this tool. I'm also happy to receive your feedback and ideas at <strong>flo (at) t21n (dot) net</strong>
-    <ul>
-        <li>Exclude rides with a certain phrase in them (if you don't want to see this weekly 'drop ride' from your group).</li>
-        <li>Show rides that you gave Kudos to</li>
-        <li>Get around the 200 activity limit</li>
-    </ul>
+    <div id='map-one' class='map'> </div>
+      <script type="text/javascript">
+        document.offlineMode = false;
+      </script>
+      <script src="static/js/feefi.js"></script>
+    </div>
+    <div id="intro">
+        <h3>What is this?</h3>
+        This filters your Strava Feed (the activities of people you're following) by certain criteria in order to help you find a route to ride.<br/>
+        People your're following are often riding nice routes, but these rides are drowning in lots of commutes and other activities in your feed. This tool helps you to find the interesting rides that you might want to ride yourself.
+        <h3>Limitations</h3>
+        It only filters the most recent 200 activities in your feed.<br/>
+        This is a hard limitation put in place by Strava. Depending on how many people you follow and how relevant their activities are to you, this might limit the number of good results you're getting.
+        <h3>Ideas for improvements</h3>
+        I have some ideas for how to improve this tool. I'm also happy to receive your feedback and ideas at <strong>flo (at) t21n (dot) net</strong>
+        <ul>
+            <li>Exclude rides with a certain phrase in them (if you don't want to see this weekly 'drop ride' from your group).</li>
+            <li>Show rides that you gave Kudos to</li>
+            <li>Get around the 200 activity limit</li>
+        </ul>
+    </div>
 </div>
 {% endblock %}

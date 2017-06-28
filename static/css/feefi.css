@@ -1,13 +1,1 @@
-body { margin:0; padding:0; }
-
-#title {}
-
-#intro {}
-
-#outer { position:absolute; left:0; width:100%; height:100%;}
-
-#param_form { position:absolute; top:0; left:0; width:50%; }
-
-#map-one { position:absolute; right:0; width:50%; height:100%; padding-left:10%; }
-
-/* #map-container { position:absolute; top:0; right:0; width:50% } */
+#map-one { padding-top:10px; padding-bottom:10px; width:500px; height:500px;}
