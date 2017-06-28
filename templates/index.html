@@ -13,16 +13,16 @@
         <h2>Select parameters</h2>
         <form action="/matches" method="post">
             <div>
-                <label for="min_ride_length">Minimum ride length</label>
+                <label for="min_ride_length">Minimum ride length (km, 1km = 1.6 miles)</label>
                 <input name="min_ride_length" id="min_ride_length" value="100"></input>
             </div>
             <div>
-                <label for="max_ride_length">Maximum ride length (0 for unlimited)</label>
+                <label for="max_ride_length">Maximum ride length (0 for unlimited, in km)</label>
                 <input name="max_ride_length" id="max_ride_length" value="0"></input>
             </div>
             <div>
                 <label for="home_loc_lat">Home location latitude</label>
-                <input name="home_loc_lat" id="home_loc_lat" value="52.47"></input>
+                <input name="home_loc_lat" id="home_loc_lat" value="52.47"></input><i>Click in the map to set longitude and latitude!</i>
             </div>
             <div>
                 <label for="home_loc_lon">Home location longitude</label>
