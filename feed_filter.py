@@ -6,7 +6,7 @@ from urlparse import urljoin
 from flask import Flask, redirect, request, render_template
 from stravalib.client import Client
 from constants import *
-from helpers import matches_criteria, get_min_dist, get_activity_url, km, Match
+from helpers import matches_criteria, get_min_dist, get_activity_url, get_athlete_name, km, Match
 # use local, non-version-controlled secrets file, fall back to env var usage
 try:
     from secrets import CLIENT_ID, CLIENT_SECRET, BASE_URL
@@ -113,7 +113,13 @@ def get_matching_activities(user_token, params):
 def extract_match_data(matches):
     return [
         Match(
-            id=m.id, name=m.name, url=get_activity_url(m), length=km(m.distance), dist_from_home=km(get_min_dist(m))
+            id=m.id,
+            name=m.name,
+            athlete_name=get_athlete_name(m),
+            url=get_activity_url(m),
+            length=km(m.distance),
+            dist_from_home=km(get_min_dist(m)
+            )
         ) for m in matches
     ]
 

@@ -7,7 +7,7 @@ from constants import P, HOME_LOC
 
 km = unit('km')
 
-Match = namedtuple('Match', ['id', 'name', 'length', 'url', 'dist_from_home'])
+Match = namedtuple('Match', ['id', 'name', 'athlete_name', 'length', 'url', 'dist_from_home'])
 
 def distance(lat1, lon1, lat2, lon2):
     a = 0.5 - cos((lat2 - lat1) * P)/2 + cos(lat1 * P) * cos(lat2 * P) * (1 - cos((lon2 - lon1) * P)) / 2
@@ -43,3 +43,9 @@ def get_min_dist(activity):
 
 def get_activity_url(activity):
     return u"https://www.strava.com/activities/%s" % activity.id
+
+def get_athlete_name(activity):
+    athlete_name = u""
+    if activity.athlete:
+        athlete_name = activity.athlete.firstname + ' ' + activity.athlete.lastname
+    return athlete_name

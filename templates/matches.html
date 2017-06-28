@@ -10,7 +10,8 @@
     <ul>
       {% for match in matches %}
           <li>
-            Name: {{match.name}}, Length: {{match.length}}<br/>
+            Activity: <b>{{match.name}}</b> by {{match.athlete_name}}<br/>
+            Length: {{match.length}}<br/>
             URL: <a href={{match.url}}>{{match.url}}</a><br/>
             Dist from home: {{match.dist_from_home}}
           </li>
