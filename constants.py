@@ -8,7 +8,7 @@ DEFAULT_FILTER_PARAMS = {
     "home_loc_lat": "52.47",
     "home_loc_lon": "13.45",
     "max_dist_from_home": "10",
-    "min_ride_length": "100",
-    "max_ride_length": "0",
+    "min_activity_length": "100",
+    "max_activity_length": "0",
     'max_results': "10",
 }

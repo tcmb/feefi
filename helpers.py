@@ -30,11 +30,11 @@ def is_close_to_home(activity, dist_from_home):
 
 def matches_criteria(activity, params):
     activity_does_match = activity.type == "Ride" and \
-        km(activity.distance) > km(params['min_ride_length']) and \
+        km(activity.distance) > km(params['min_activity_length']) and \
         is_close_to_home(activity, params['max_dist_from_home'])
-    # consider max_ride_length only if != 0
-    if activity_does_match and params['max_ride_length'] != 0:
-        return activity_does_match and km(activity.distance) < km(params['max_ride_length'])
+    # consider max_activity_length only if != 0
+    if activity_does_match and params['max_activity_length'] != 0:
+        return activity_does_match and km(activity.distance) < km(params['max_activity_length'])
     else:
         return activity_does_match
 
