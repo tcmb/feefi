@@ -9,6 +9,8 @@ if (!document.offlineMode) {
         zoom: 11 // starting zoom
     });
 
+    map.addControl(new mapboxgl.NavigationControl());
+
     map.on('click', function (e) {
         document.getElementById("home_loc_lat").value = e.lngLat.lat.toFixed(2);
         document.getElementById("home_loc_lon").value = e.lngLat.lng.toFixed(2);
