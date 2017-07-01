@@ -44,6 +44,7 @@ def get_user_token(authorization_code):
 
 def get_match_params(request):
     return {
+        "activity_type": request.form['activity_type'],
         "home_loc_lat": request.form['home_loc_lat'],
         "home_loc_lon": request.form['home_loc_lon'],
         "max_dist_from_home": request.form['max_dist_from_home'],
@@ -57,6 +58,7 @@ def validate_filter_parameters(params):
     # This one might be worth unit testing...
     # 1. ensure correct types
     try:
+        params["activity_type"] = unicode(params['activity_type'])
         params["home_loc_lat"] = float(params['home_loc_lat'])
         params["home_loc_lon"] = float(params['home_loc_lon'])
         params["max_dist_from_home"] = int(params['max_dist_from_home'])
@@ -68,6 +70,7 @@ def validate_filter_parameters(params):
         return DEFAULT_FILTER_PARAMS
 
     # 2. ensure params within sensible boundaries
+    params["activity_type"] = params["activity_type"] if params["activity_type"] in [u"Ride", u"Run"] else u"Ride"
     params["home_loc_lat"] = params['home_loc_lat'] if -90 <= params['home_loc_lat'] <= 90 else DEFAULT_FILTER_PARAMS['home_loc_lat']
     params["home_loc_lon"] = params['home_loc_lon'] if -180 <= params["home_loc_lon"] <= 180 else DEFAULT_FILTER_PARAMS['home_loc_lon']
     params["max_dist_from_home"] = params['max_dist_from_home'] if 0 <= params["max_dist_from_home"] <= 100 else DEFAULT_FILTER_PARAMS['max_dist_from_home']

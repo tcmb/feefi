@@ -13,6 +13,13 @@
         <h2>Select parameters</h2>
         <form action="/matches" method="post">
             <div>
+                <input type="radio" name="activity_type" id="activity_type_ride" value="Ride" checked>
+                <label for="activity_type_ride">Ride</label>
+
+                <input type="radio" name="activity_type" id="activity_type_run" value="Run">
+                <label for="activity_type_run">Run</label>
+            </div>
+            <div>
                 <label for="min_activity_length">Minimum activity length (km, 1km = 1.6 miles)</label>
                 <input name="min_activity_length" id="min_activity_length" value="100"></input>
             </div>
