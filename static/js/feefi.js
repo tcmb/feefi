@@ -16,3 +16,20 @@ if (!document.offlineMode) {
         document.getElementById("home_loc_lon").value = e.lngLat.lng.toFixed(2);
     });
 }
+
+window.onload = function() {
+
+    ride_button = document.getElementById('activity_type_ride');
+    run_button = document.getElementById('activity_type_run');
+
+    ride_button.onclick = activityTypeHandler;
+    run_button.onclick = activityTypeHandler;
+}
+
+function activityTypeHandler(e) {
+    if (ride_button.checked) {
+        document.getElementById('min_activity_length').value = 100;
+    } else {
+        document.getElementById('min_activity_length').value = 10;
+    };
+}
