@@ -4,7 +4,7 @@ if (!document.offlineMode) {
 
     var map = new mapboxgl.Map({
         container: 'map-one', // container id
-        style: 'mapbox://styles/mapbox/streets-v9',
+        style: 'mapbox://styles/mapbox/streets-v10',
         center: [13.45, 52.47], // starting position
         zoom: 11 // starting zoom
     });
