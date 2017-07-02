@@ -3,3 +3,5 @@ body {margin: 20px}
 #map-one { padding-top:10px; padding-bottom:10px; width:500px; height:500px;}
 
 #strava-logo { position: absolute; right: 0; width: 100px;  }
+
+.strava-link { text-decoration: underline; }
