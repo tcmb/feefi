@@ -12,6 +12,9 @@ secrets.py
 # PyCharm project file
 .idea/
 
+# Mac turdlets
+.DS_Store
+
 # Distribution / packaging
 .Python
 env/
