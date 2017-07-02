@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block body %}
+    <div id="auth-intro">
+        <h1>FeeFi: The Feed Filter for Strava</h1>
+        <p>This little app filters your Strava Feed (the activities of people you're following) by certain criteria in order to help you find a route to ride or run.</p>
+        <p> People your're following are often riding or running nice routes, but these activities are drowning in lots of commutes, challenge notifications and other stuff in your feed. This tool helps you to find the interesting routes that you might want to ride or run yourself.</p>
+        <div id="auth-wrapper">
+            <div id="auth-button">
+                <a href={{authorization_url}}><img src="/static/img/btn_strava_connectwith_orange.png"/></a>
+                <p class="bold">Click the button above to allow fetching your feed from Strava.</p>
+            </div>
+        </div>
+    </div>
+{% endblock %}
