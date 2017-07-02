@@ -1,9 +1,24 @@
-body {margin: 20px}
+body {
+    margin: 20px
+}
 
-#map-one { padding-top:10px; padding-bottom:10px; width:500px; height:500px;}
+#map-one {
+    padding-top:10px;
+    padding-bottom:10px;
+    width:500px;
+    height:500px;
+}
 
-#strava-logo { position: absolute; right: 0; width: 100px;  }
+#strava-logo {
+    position: absolute;
+    right: 0;
+    width: 100px;
+}
 
-.strava-link { text-decoration: underline; }
+.strava-link {
+    text-decoration: underline;
+}
 
-.activity-name { font-weight:bold; }
+.activity-name {
+    font-weight:bold;
+}
