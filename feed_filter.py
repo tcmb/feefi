@@ -131,7 +131,7 @@ def extract_match_data(matches):
 def index():
     """
     For authorized users, display page for parameter selection
-    For non-authorized users, redirect to Strava app authorization page
+    For non-authorized users, show landing page with link to Strava app authorization page
     """
     authorization_code = request.args.get('code')
     if authorization_code:
