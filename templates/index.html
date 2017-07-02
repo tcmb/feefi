@@ -21,30 +21,30 @@
             </div>
             <div>
                 <label for="min_activity_length">Minimum activity length (km, 1km = 1.6 miles)</label>
-                <input name="min_activity_length" id="min_activity_length" value="100"></input>
+                <input name="min_activity_length" id="min_activity_length" value="100"/>
             </div>
             <div>
                 <label for="max_activity_length">Maximum activity length (0 for unlimited, in km)</label>
-                <input name="max_activity_length" id="max_activity_length" value="0"></input>
+                <input name="max_activity_length" id="max_activity_length" value="0"/>
             </div>
             <div>
                 <label for="home_loc_lat">Home location latitude</label>
-                <input name="home_loc_lat" id="home_loc_lat" value="52.47"></input><i>Click in the map to set longitude and latitude!</i>
+                <input name="home_loc_lat" id="home_loc_lat" value="52.47"/><i>Click in the map to set longitude and latitude!</i>
             </div>
             <div>
                 <label for="home_loc_lon">Home location longitude</label>
-                <input name="home_loc_lon" id="home_loc_lon" value="13.45"></input>
+                <input name="home_loc_lon" id="home_loc_lon" value="13.45"/>
             </div>
             <div>
                 <label for="max_dist_from_home">Max km from home for start/stop</label>
-                <input name="max_dist_from_home" id="max_dist_from_home" value="10"></input>
+                <input name="max_dist_from_home" id="max_dist_from_home" value="10"/>
             </div>
             <div>
                 <label for="max_results">Maximum number of results</label>
-                <input name="max_results" id="max_results" value="10"></input>
+                <input name="max_results" id="max_results" value="10"/>
             </div>
             <div>
-                <input type="hidden" id="auth_code" name="auth_code" value="{{auth_code}}"></input>
+                <input type="hidden" id="auth_code" name="auth_code" value="{{auth_code}}"/>
             </div>
             <div>
                 <button>Get matches</button>
@@ -56,20 +56,19 @@
         document.offlineMode = false;
       </script>
       <script src="static/js/feefi.js"></script>
-    </div>
-    <div id="intro">
-        <h3>What is this?</h3>
-        This filters your Strava Feed (the activities of people you're following) by certain criteria in order to help you find a route to ride or run.<br/>
-        People your're following are often riding or running nice routes, but these activities are drowning in lots of commutes, challenge notifications and other stuff in your feed. This tool helps you to find the interesting routes that you might want to ride or run yourself.
-        <h3>Limitations</h3>
-        It only filters the most recent 200 activities in your feed. This is a hard limitation put in place by Strava. Depending on how many people you follow and how relevant their activities are to you, this might limit the number of good results you're getting.
-        <h3>Ideas for improvements</h3>
-        I have some ideas for how to improve this tool. I'm also happy to receive your feedback and ideas at <strong>flo (at) t21n (dot) net</strong>
-        <ul>
-            <li>Exclude activities with a certain phrase in them (if you don't want to see the weekly 'drop ride' from your group).</li>
-            <li>Show activities that you gave Kudos to</li>
-            <li>Get around the 200 activities limit</li>
-        </ul>
-    </div>
+</div>
+<div id="intro">
+    <h3>What is this?</h3>
+    This filters your Strava Feed (the activities of people you're following) by certain criteria in order to help you find a route to ride or run.<br/>
+    People your're following are often riding or running nice routes, but these activities are drowning in lots of commutes, challenge notifications and other stuff in your feed. This tool helps you to find the interesting routes that you might want to ride or run yourself.
+    <h3>Limitations</h3>
+    It only filters the most recent 200 activities in your feed. This is a hard limitation put in place by Strava. Depending on how many people you follow and how relevant their activities are to you, this might limit the number of good results you're getting.
+    <h3>Ideas for improvements</h3>
+    I have some ideas for how to improve this tool. I'm also happy to receive your feedback and ideas at <strong>flo (at) t21n (dot) net</strong>
+    <ul>
+        <li>Exclude activities with a certain phrase in them (if you don't want to see the weekly 'drop ride' from your group).</li>
+        <li>Show activities that you gave Kudos to</li>
+        <li>Get around the 200 activities limit</li>
+    </ul>
 </div>
 {% endblock %}
