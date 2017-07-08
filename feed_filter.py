@@ -137,7 +137,7 @@ def index():
     if authorization_code:
         return render_template('index.html', auth_code=authorization_code)
     else:
-        return render_template('authorize.html', authorization_url=authorization_url)
+        return redirect(authorization_url)
 
 
 @app.route('/matches', methods=['POST'])
@@ -152,7 +152,7 @@ def matches():
         matches = extract_match_data(
             get_matching_activities(user_token, params)
             )
-        return render_template('matches.html', matches=matches, base_url="%s?code=%s" % (BASE_URL, authorization_code))
+        return render_template('matches.html', matches=matches, base_url=BASE_URL)
     else:
         #return 400
         pass

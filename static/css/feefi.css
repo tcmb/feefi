@@ -2,21 +2,6 @@ body {
     margin: 20px
 }
 
-#auth-intro {
-    width: 50%;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-#auth-wrapper {
-    text-align: center;
-}
-
-#auth-button {
-    display: inline-block;
-}
-
 #map-one {
     padding-top:10px;
     padding-bottom:10px;
@@ -32,10 +17,6 @@ body {
 
 a {
     text-decoration: underline;
-}
-
-.bold {
-    font-weight:bold;
 }
 
 .activity-name {
