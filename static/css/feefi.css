@@ -22,3 +22,7 @@ a {
 .activity-name {
     font-weight:bold;
 }
+
+#notice {
+    background-color:rgba(255, 0, 0, .5);
+}
